@@ -7,7 +7,7 @@ REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_DIR="$HOME/.config"
 BACKUP_DIR="$HOME/backups/config-preinstall-$(date +%Y%m%d-%H%M%S)"
 
-for dir in hypr waybar rofi swaync kitty; do
+for dir in hypr waybar rofi swaync kitty fish; do
     target="$CONFIG_DIR/$dir"
     source="$REPO_DIR/$dir"
 

@@ -10,6 +10,7 @@ every file here is plain and meant to be read and edited directly.
 - `rofi/` — app launcher (`$mainMod + Space`)
 - `swaync/` — notification daemon/center (`$mainMod + N`)
 - `kitty/` — terminal
+- `fish/` — shell config (prompt via starship, abbreviations, EDITOR)
 
 ## Install
 
