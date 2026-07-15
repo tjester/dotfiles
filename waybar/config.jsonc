@@ -38,7 +38,9 @@
         "format-icons": {
             "default": ["", "", ""]
         },
+        "tooltip-format": "{desc}\nLeft-click: mute  Right-click: choose output",
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "~/.config/waybar/scripts/audio-output.sh",
         "scroll-step": 5
     },
 

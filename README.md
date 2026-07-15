@@ -6,7 +6,7 @@ every file here is plain and meant to be read and edited directly.
 ## Layout
 
 - `hypr/` — Hyprland compositor config, monitor layout, hypridle/hyprlock/hyprpaper
-- `waybar/` — status bar
+- `waybar/` — status bar (right-click the volume icon to pick an audio output device)
 - `rofi/` — app launcher (`$mainMod + Space`)
 - `swaync/` — notification daemon/center (`$mainMod + N`)
 - `kitty/` — terminal
