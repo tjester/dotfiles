@@ -33,8 +33,16 @@ log out and back in.
 
 ## Key bindings (SUPER = Windows key)
 
+Press `SUPER + /` any time for an on-screen cheat sheet (rofi popup, powered by
+`hypr/scripts/show-keybinds.sh`). It reads live from `hyprctl binds`, so it's
+always accurate — every bind that should show up there is defined with `bindd`
+(or `bindmd`/`bindeld`/`bindld`) instead of plain `bind` in `hypr/hyprland.conf`,
+which attaches a description. Add a description to a new bind the same way to
+have it show up automatically.
+
 | Binding | Action |
 |---|---|
+| `SUPER + /` | Show keybind cheat sheet |
 | `SUPER + Return` | Terminal (kitty) |
 | `SUPER + Space` | App launcher (rofi) |
 | `SUPER + Q` | Close window |
