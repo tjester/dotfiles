@@ -31,6 +31,28 @@ Waybar/swaync/hyprpaper/hypridle need a restart to pick up config changes —
 either `hyprctl dispatch exec <name>` after killing the old process, or just
 log out and back in.
 
+## A note on config syntax drift
+
+These are fast-moving projects (Hyprland, hyprpaper, waybar, swaync all ship
+frequent breaking releases) and the config file formats here are only correct
+for whatever version was installed when they were last touched. If a setting
+silently stops working after a system update, don't assume the config is
+still valid syntax — check first:
+
+- `Hyprland --config hypr/hyprland.conf --verify-config` dry-runs the main
+  config without launching a compositor.
+- For everything else, run the daemon in the foreground with verbose logging
+  (e.g. `hyprpaper --verbose`) and watch for parse errors or "invalid config
+  key" warnings — a daemon that starts cleanly but does nothing is usually
+  silently ignoring an option that no longer exists, not a bug in the rest of
+  the setup.
+- When in doubt, check the actual installed version (`hyprpaper --version`,
+  etc.) against that project's source/changelog rather than trusting
+  half-remembered syntax — this happened once already: `hyprpaper` v0.8.4
+  replaced the old flat `preload = ` / `wallpaper = ` directives with a
+  `wallpaper { }` block, and the daemon just kept quietly redisplaying
+  whatever it last had loaded instead of erroring.
+
 ## Key bindings (SUPER = Windows key)
 
 Press `SUPER + /` any time for an on-screen cheat sheet (rofi popup, powered by
