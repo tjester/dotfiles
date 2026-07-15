@@ -1,0 +1,75 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 34,
+    "spacing": 4,
+
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray", "pulseaudio", "network", "cpu", "memory", "custom/notification"],
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "active": "",
+            "default": ""
+        }
+    },
+
+    "hyprland/window": {
+        "max-length": 50,
+        "separate-outputs": true
+    },
+
+    "clock": {
+        "format": "{:%H:%M   %a %d %b}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " muted",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "scroll-step": 5
+    },
+
+    "network": {
+        "format-wifi": " {signalStrength}%",
+        "format-ethernet": " {ipaddr}",
+        "format-disconnected": "⚠ disconnected",
+        "tooltip-format": "{ifname} via {gwaddr}"
+    },
+
+    "cpu": {
+        "format": " {usage}%",
+        "interval": 5
+    },
+
+    "memory": {
+        "format": " {percentage}%",
+        "interval": 5
+    },
+
+    "custom/notification": {
+        "exec": "swaync-client -swb",
+        "return-type": "json",
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "",
+            "none": "",
+            "dnd-notification": "",
+            "dnd-none": ""
+        },
+        "on-click": "swaync-client -t -sw",
+        "escape": true
+    }
+}

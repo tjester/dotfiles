@@ -1,0 +1,50 @@
+* {
+    font-family: "BitstromWera Nerd Font";
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(30, 30, 46, 0.9);
+    color: #cdd6f4;
+    border-bottom: 2px solid #313244;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    color: #6c7086;
+    background: transparent;
+}
+
+#workspaces button.active {
+    color: #b4befe;
+}
+
+#workspaces button:hover {
+    background: #313244;
+    border-radius: 6px;
+}
+
+#window,
+#clock,
+#tray,
+#pulseaudio,
+#network,
+#cpu,
+#memory,
+#custom-notification {
+    padding: 0 10px;
+    margin: 4px 2px;
+    background: #313244;
+    border-radius: 6px;
+    color: #cdd6f4;
+}
+
+#clock {
+    color: #b4befe;
+    font-weight: bold;
+}
+
+#network.disconnected {
+    color: #f38ba8;
+}

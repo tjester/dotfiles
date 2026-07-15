@@ -1,0 +1,28 @@
+* {
+    font-family: "BitstromWera Nerd Font";
+}
+
+.control-center,
+.floating-notifications {
+    background: transparent;
+}
+
+.notification-row .notification-background {
+    background: #1e1e2e;
+    border: 1px solid #313244;
+    border-radius: 10px;
+    color: #cdd6f4;
+}
+
+.notification-row .notification-background .notification-content {
+    padding: 8px;
+}
+
+.control-center .widget-title {
+    color: #cdd6f4;
+    padding: 8px;
+}
+
+widget-dnd {
+    color: #cdd6f4;
+}

@@ -1,0 +1,57 @@
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    icon-theme: "Nordic-darker";
+    font: "BitstromWera Nerd Font 12";
+    display-drun: "Apps";
+}
+
+* {
+    bg: #1e1e2eee;
+    bg-alt: #313244;
+    fg: #cdd6f4;
+    accent: #b4befe;
+
+    background-color: transparent;
+    text-color: @fg;
+}
+
+window {
+    background-color: @bg;
+    border: 2px;
+    border-color: @accent;
+    border-radius: 10px;
+    width: 600px;
+    location: center;
+}
+
+mainbox {
+    padding: 12px;
+}
+
+inputbar {
+    background-color: @bg-alt;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 0 0 10px 0;
+}
+
+entry {
+    placeholder: "Search...";
+}
+
+listview {
+    lines: 8;
+    spacing: 4px;
+    scrollbar: false;
+}
+
+element {
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+element selected {
+    background-color: @bg-alt;
+    text-color: @accent;
+}
