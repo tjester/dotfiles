@@ -9,6 +9,8 @@
 
     "modules-left": [
         "hyprland/workspaces",
+        "hyprland/submap",
+        "custom/media",
         "hyprland/window"
     ],
     "modules-center": [
@@ -36,6 +38,17 @@
     "hyprland/window": {
         "format": "{title}",
         "max-length": 50
+    },
+
+    "hyprland/submap": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "custom/media": {
+        "format": " {}",
+        "max-length": 40,
+        "interval": 30,
+        "exec": "~/.config/waybar/scripts/mediaplayer.sh 2> /dev/null"
     },
 
     "tray": {
