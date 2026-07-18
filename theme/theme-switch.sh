@@ -52,14 +52,17 @@ if [ -f "$THEME_DIR/gtk.conf" ]; then
     gsettings set org.gnome.desktop.interface color-scheme "$COLOR_SCHEME" 2>/dev/null || true
 fi
 
-# ---- Wallpaper (all connected monitors) ----
+# ---- Wallpaper, with a swipe transition (all connected monitors) ----
 if [ -f "$THEME_DIR/wallpaper" ]; then
     WALLPAPER="$(cat "$THEME_DIR/wallpaper")"
-    if [ -f "$WALLPAPER" ] && command -v hyprctl >/dev/null 2>&1; then
-        hyprctl hyprpaper preload "$WALLPAPER" >/dev/null 2>&1 || true
-        while read -r mon; do
-            hyprctl hyprpaper wallpaper "$mon,$WALLPAPER" >/dev/null 2>&1 || true
-        done < <(hyprctl monitors -j | python3 -c 'import json,sys; [print(m["name"]) for m in json.load(sys.stdin)]')
+    if [ -f "$WALLPAPER" ] && command -v awww >/dev/null 2>&1; then
+        awww query >/dev/null 2>&1 || { setsid awww-daemon >/tmp/awww.log 2>&1 & disown; sleep 0.5; }
+        awww img "$WALLPAPER" \
+            --transition-type wipe \
+            --transition-angle 30 \
+            --transition-duration 0.9 \
+            --transition-fps 60 \
+            >/dev/null 2>&1 || true
     fi
 fi
 
