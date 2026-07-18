@@ -2,6 +2,7 @@ set -g fish_greeting
 
 set -gx EDITOR nvim
 set -gx VISUAL nvim
+set -gx BROWSER zen
 fish_add_path -m $HOME/.local/bin
 
 if status is-interactive
