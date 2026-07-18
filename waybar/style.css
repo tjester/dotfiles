@@ -1,50 +1,163 @@
+/* Colors (dracula) */
+@define-color foreground	#f8f8f2;
+@define-color background	rgba(40, 42, 54, 0.5);
+@define-color orange	#ffb86c;
+@define-color gray	#44475a;
+@define-color black #21222c;
+@define-color red	#ff5555;
+@define-color green	#50fa7b;
+@define-color yellow	#f1fa8c;
+@define-color cyan	#8be9fd;
+@define-color blue	#6272a4;
+@define-color purple	#bd93f9;
+@define-color pink	#ff79c6;
+@define-color white #ffffff;
+@define-color brred #ff6e6e;
+
+@define-color arch_blue #89b4fa;
+
+@define-color workspace_background	@background;
+@define-color workspace_active	@black;
+@define-color workspace_active_background	@green;
+@define-color workspace_urgent	@white;
+@define-color workspace_urgent_background	@brred;
+@define-color workspace_hover	@black;
+@define-color workspace_hover_background	@pink;
+@define-color critical	@red;
+@define-color warning	@yellow;
+
+@keyframes blink {
+    to {
+        background-color: @white;
+        color: @black;
+    }
+}
+
 * {
+    border: none;
+    border-radius: 0;
     font-family: "BitstromWera Nerd Font";
-    font-size: 13px;
+    font-weight: bold;
+    font-size: 16px;
     min-height: 0;
 }
 
 window#waybar {
-    background: rgba(30, 30, 46, 0.9);
-    color: #cdd6f4;
-    border-bottom: 2px solid #313244;
+    background: transparent;
+    color: @foreground;
+}
+
+/* ── hyprland/workspaces button states ──────────────────────────────── */
+
+#workspaces {
+    background: @workspace_background;
+    opacity: 1;
+    transition: none;
+    padding: 5px 5px;
+    border-radius: 5px;
 }
 
 #workspaces button {
-    padding: 0 8px;
-    color: #6c7086;
     background: transparent;
+    color: @blue;
+    border-radius: 5px;
+    padding: 0 6px;
+    min-width: 18px;
+    transition: none;
 }
 
 #workspaces button.active {
-    color: #b4befe;
+    background: @workspace_active_background;
+    color: @workspace_active;
+    border-radius: 5px;
+}
+
+#workspaces button.urgent {
+    background: @workspace_urgent_background;
+    color: @workspace_urgent;
+    border-radius: 5px;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 #workspaces button:hover {
-    background: #313244;
-    border-radius: 6px;
+    background: @workspace_hover_background;
+    color: @workspace_hover;
+    border-radius: 5px;
 }
 
-#window,
-#clock,
-#tray,
-#pulseaudio,
-#network,
+#window {
+    background: @background;
+    border-radius: 5px;
+    margin: 5px 10px 5px 10px;
+}
+
+tooltip {
+    background: @background;
+    opacity: 0.95;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: @purple;
+}
+
+tooltip label {
+    color: @foreground;
+}
+
+#custom-launcher,
+#custom-lock_screen,
+#custom-power,
+#custom-weather,
 #cpu,
+#disk,
+#custom-updates,
 #memory,
-#custom-notification {
-    padding: 0 10px;
-    margin: 4px 2px;
-    background: #313244;
-    border-radius: 6px;
-    color: #cdd6f4;
+#custom-clock,
+#wireplumber,
+#network,
+#tray {
+    background: @background;
+    opacity: 1;
+    padding: 0px 5px;
+    margin: 2px 0px 2px 0px;
 }
 
-#clock {
-    color: #b4befe;
-    font-weight: bold;
+#disk.critical {
+    background-color: @critical;
 }
 
-#network.disconnected {
-    color: #f38ba8;
+#disk.warning {
+    background-color: @warning;
+}
+
+#custom-launcher {
+    color: @arch_blue;
+    border-radius: 5px 0px 0px 5px;
+}
+
+#custom-power {
+    color: @red;
+    border-radius: 0px 5px 5px 0px;
+}
+
+#custom-clock {
+    border-radius: 5px 0px 0px 5px;
+}
+
+#tray {
+    background: @background;
+    border-radius: 5px;
+    margin: 5px 10px 5px 10px;
+}
+
+#wireplumber {
+    background: @background;
+}
+
+#wireplumber.source {
+    background: @background;
 }
