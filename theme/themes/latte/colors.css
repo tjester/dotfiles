@@ -1,0 +1,14 @@
+/* Catppuccin Latte (light) — shared GTK-CSS color defines for waybar + swaync */
+@define-color bg #eff1f5;
+@define-color bg-alt #ccd0da;
+@define-color fg #4c4f69;
+@define-color subtext #6c6f85;
+@define-color overlay #9ca0b0;
+@define-color accent #7287fd;
+@define-color accent2 #8839ef;
+@define-color red #d20f39;
+@define-color green #40a02b;
+@define-color yellow #df8e1d;
+@define-color blue #1e66f5;
+@define-color pink #ea76cb;
+@define-color teal #179299;

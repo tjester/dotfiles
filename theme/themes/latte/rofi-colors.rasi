@@ -1,0 +1,7 @@
+/* Catppuccin Latte (light) */
+* {
+    bg: #eff1f5ee;
+    bg-alt: #ccd0da;
+    fg: #4c4f69;
+    accent: #7287fd;
+}

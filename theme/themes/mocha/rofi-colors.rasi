@@ -1,0 +1,7 @@
+/* Catppuccin Mocha (dark) */
+* {
+    bg: #1e1e2eee;
+    bg-alt: #313244;
+    fg: #cdd6f4;
+    accent: #b4befe;
+}

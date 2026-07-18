@@ -1,0 +1,7 @@
+/* Nova (dark) */
+* {
+    bg: #262a35ee;
+    bg-alt: #3d3742;
+    fg: #f3e6cf;
+    accent: #f8bf9b;
+}

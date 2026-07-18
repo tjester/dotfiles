@@ -1,0 +1,17 @@
+/* Nova (dark) — palette sampled from the astronaut/moonrise artwork
+ * at ~/Pictures/1338182.png (dusky sky, peach moon, gold sun, poppy field).
+ * green/blue/teal aren't present in the source art, so those three are
+ * synthesized to stay harmonious with the warm, muted, dusky palette. */
+@define-color bg #262a35;
+@define-color bg-alt #3d3742;
+@define-color fg #f3e6cf;
+@define-color subtext #cbb99e;
+@define-color overlay #9c8f7e;
+@define-color accent #f8bf9b;
+@define-color accent2 #fde1a5;
+@define-color red #d9463c;
+@define-color green #93a76c;
+@define-color yellow #f7c873;
+@define-color blue #6b7aa1;
+@define-color pink #e8836a;
+@define-color teal #6f9c96;

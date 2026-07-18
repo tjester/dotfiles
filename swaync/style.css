@@ -1,3 +1,5 @@
+@import url("theme.css");
+
 * {
     font-family: "BitstromWera Nerd Font";
 }
@@ -8,10 +10,10 @@
 }
 
 .notification-row .notification-background {
-    background: #1e1e2e;
-    border: 1px solid #313244;
+    background: @bg;
+    border: 1px solid @bg-alt;
     border-radius: 10px;
-    color: #cdd6f4;
+    color: @fg;
 }
 
 .notification-row .notification-background .notification-content {
@@ -19,10 +21,10 @@
 }
 
 .control-center .widget-title {
-    color: #cdd6f4;
+    color: @fg;
     padding: 8px;
 }
 
 widget-dnd {
-    color: #cdd6f4;
+    color: @fg;
 }

@@ -1,6 +1,9 @@
+@import url("theme.css");
+
 /* Waybar style adapted from https://github.com/Egosummiki/dotfiles/tree/master/waybar
  * for Hyprland module names. "Ubuntu Nerd Font" isn't installed here, so it's
- * swapped for BitstromWera Nerd Font (used elsewhere in this config). */
+ * swapped for BitstromWera Nerd Font (used elsewhere in this config).
+ * Colors come from theme.css (symlinked by theme-switch.sh), not hardcoded here. */
 
 * {
     border: none;
@@ -12,7 +15,7 @@
 
 window#waybar {
     background: transparent;
-    color: white;
+    color: @fg;
 }
 
 #window {
@@ -22,13 +25,13 @@ window#waybar {
 #workspaces button {
     padding: 0 5px;
     background: transparent;
-    color: white;
+    color: @fg;
     border-top: 2px solid transparent;
 }
 
 #workspaces button.active {
-    color: #c9545d;
-    border-top: 2px solid #c9545d;
+    color: @accent;
+    border-top: 2px solid @accent;
 }
 
 @keyframes blink {
@@ -39,7 +42,7 @@ window#waybar {
 }
 
 #workspaces button.urgent {
-    color: white;
+    color: @fg;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -48,8 +51,8 @@ window#waybar {
 }
 
 #submap {
-    background: #64727D;
-    border-bottom: 3px solid white;
+    background: @bg-alt;
+    border-bottom: 3px solid @fg;
 }
 
 #clock,
@@ -71,27 +74,27 @@ window#waybar {
 }
 
 #network.disconnected {
-    background: #f53c3c;
+    background: @red;
 }
 
 #custom-media {
-    color: rgb(102, 220, 105);
+    color: @green;
 }
 
 #idle_inhibitor {
-    color: white;
+    color: @fg;
 }
 
 #idle_inhibitor.activated {
-    color: #c9545d;
+    color: @accent;
 }
 
 #custom-power {
-    color: #c9545d;
+    color: @accent;
 }
 
 #custom-power:hover {
-    color: #f53c3c;
+    color: @red;
 }
 
 #tray {
