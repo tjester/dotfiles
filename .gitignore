@@ -5,3 +5,6 @@ rofi/theme-colors.rasi
 swaync/theme.css
 waybar/theme.css
 theme/current
+
+# Claude Code project directory — local agent state, not config
+.claude/
