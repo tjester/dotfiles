@@ -21,6 +21,7 @@
         "network",
         "cpu",
         "memory",
+        "custom/gpu",
         "idle_inhibitor",
         "tray",
         "custom/power"
@@ -63,11 +64,20 @@
 
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false
+        "tooltip-format": "Load: {load}\nAvg: {avg_frequency} GHz\nMin: {min_frequency} GHz\nMax: {max_frequency} GHz"
     },
 
     "memory": {
-        "format": "{}% "
+        "format": "{}% 󰍛"
+    },
+
+    // Addressed by PCI slot rather than /sys/class/drm/card1, whose numbering
+    // isn't guaranteed stable across reboots.
+    "custom/gpu": {
+        "format": "{}% 󰢮",
+        "interval": 5,
+        "return-type": "json",
+        "exec": "~/.config/waybar/scripts/gpu.sh"
     },
 
     "network": {
