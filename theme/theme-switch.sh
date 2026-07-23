@@ -75,5 +75,9 @@ disown
 
 command -v swaync-client >/dev/null 2>&1 && swaync-client -rs >/dev/null 2>&1 || true
 
+for sock in /tmp/kitty-*; do
+    [ -S "$sock" ] && kitty @ --to "unix:$sock" load-config >/dev/null 2>&1 || true
+done
+
 echo "$THEME" > "$CURRENT_FILE"
-echo "theme-switch: applied '$THEME' (rofi/new kitty windows pick it up next launch)"
+echo "theme-switch: applied '$THEME' (rofi picks it up next launch)"
