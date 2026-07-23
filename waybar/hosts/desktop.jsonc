@@ -1,0 +1,13 @@
+// Included as host.jsonc (symlinked by install.sh when no battery is detected)
+{
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "cpu",
+        "memory",
+        "custom/gpu",
+        "idle_inhibitor",
+        "tray",
+        "custom/power"
+    ]
+}

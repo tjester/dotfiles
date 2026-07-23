@@ -16,16 +16,10 @@
     "modules-center": [
         "clock"
     ],
-    "modules-right": [
-        "pulseaudio",
-        "network",
-        "cpu",
-        "memory",
-        "custom/gpu",
-        "idle_inhibitor",
-        "tray",
-        "custom/power"
-    ],
+    // modules-right (with/without "battery") comes from host.jsonc, a
+    // symlink into hosts/{laptop,desktop}.jsonc picked by install.sh based
+    // on whether battery hardware is detected.
+    "include": ["host.jsonc"],
 
     "hyprland/workspaces": {
         "format": "{icon}",
@@ -80,13 +74,24 @@
         "exec": "~/.config/waybar/scripts/gpu.sh"
     },
 
+    "battery": {
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% \uf0e7",
+        "format-plugged": "{capacity}% \uf1e6",
+        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
+        "tooltip-format": "{timeTo}"
+    },
+
     "network": {
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "{essid} {icon}",
         "format-ethernet": "{ipaddr}/{cidr} 󰈀",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-disconnected": "Disconnected 󰤯",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "format-icons": {
+            "wifi": ["󰤟", "󰤢", "󰤥", "󰤨"]
+        }
     },
 
     "pulseaudio": {

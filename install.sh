@@ -7,7 +7,7 @@ REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_DIR="$HOME/.config"
 BACKUP_DIR="$HOME/backups/config-preinstall-$(date +%Y%m%d-%H%M%S)"
 
-for dir in hypr waybar rofi swaync kitty fish; do
+for dir in hypr waybar rofi swaync kitty fish theme autostart; do
     target="$CONFIG_DIR/$dir"
     source="$REPO_DIR/$dir"
 
@@ -22,3 +22,13 @@ for dir in hypr waybar rofi swaync kitty fish; do
     ln -s "$source" "$target"
     echo "Linked $target -> $source"
 done
+
+# Pick waybar's modules-right (battery module included or not) based on
+# whether this machine actually has battery hardware.
+if compgen -G "/sys/class/power_supply/BAT*" > /dev/null; then
+    WAYBAR_HOST="laptop"
+else
+    WAYBAR_HOST="desktop"
+fi
+ln -sf "$REPO_DIR/waybar/hosts/$WAYBAR_HOST.jsonc" "$REPO_DIR/waybar/host.jsonc"
+echo "Linked waybar/host.jsonc -> hosts/$WAYBAR_HOST.jsonc"

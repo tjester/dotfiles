@@ -63,6 +63,7 @@ window#waybar {
 #pulseaudio,
 #custom-media,
 #custom-gpu,
+#battery,
 #tray,
 #submap,
 #idle_inhibitor,
@@ -100,4 +101,13 @@ window#waybar {
 }
 
 #tray {
+}
+
+/* Fixed width so 1-3 digit percentages don't shift neighboring icons */
+#cpu,
+#memory,
+#custom-gpu,
+#battery,
+#pulseaudio {
+    min-width: 46px;
 }
