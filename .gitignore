@@ -11,5 +11,10 @@ theme/current
 # (battery module shown on laptops, hidden on desktops)
 waybar/host.jsonc
 
+# Rewritten by fish itself at runtime. config.fish already declares the only
+# thing this held (fish_add_path $HOME/.local/bin), and the -m flag reorders
+# the entries on every shell start, so tracking it is pure diff noise.
+fish/fish_variables
+
 # Claude Code project directory — local agent state, not config
 .claude/
