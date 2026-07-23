@@ -7,7 +7,7 @@ REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_DIR="$HOME/.config"
 BACKUP_DIR="$HOME/backups/config-preinstall-$(date +%Y%m%d-%H%M%S)"
 
-for dir in hypr waybar rofi swaync kitty fish theme autostart; do
+for dir in hypr waybar rofi swaync kitty fish theme autostart nano; do
     target="$CONFIG_DIR/$dir"
     source="$REPO_DIR/$dir"
 
@@ -22,6 +22,17 @@ for dir in hypr waybar rofi swaync kitty fish theme autostart; do
     ln -s "$source" "$target"
     echo "Linked $target -> $source"
 done
+
+# nano reads whichever it finds first of ~/.nanorc, $XDG_CONFIG_HOME/nano/nanorc
+# and ~/.config/nano/nanorc. A leftover ~/.nanorc therefore silently shadows the
+# config linked above, so move it out of the way.
+if [ -L "$HOME/.nanorc" ]; then
+    rm "$HOME/.nanorc"
+elif [ -e "$HOME/.nanorc" ]; then
+    mkdir -p "$BACKUP_DIR"
+    mv "$HOME/.nanorc" "$BACKUP_DIR/"
+    echo "Backed up ~/.nanorc -> $BACKUP_DIR/ (it would shadow ~/.config/nano/nanorc)"
+fi
 
 # Pick waybar's modules-right (battery module included or not) based on
 # whether this machine actually has battery hardware.

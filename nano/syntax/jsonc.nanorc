@@ -1,0 +1,31 @@
+## JSON with comments — waybar's config.jsonc and waybar/hosts/*.jsonc.
+## The stock JSON syntax only matches "\.json$" and forbids comments.
+##
+## Regex quoting follows nano's convention: the pattern runs from the first
+## quote to the LAST quote on the argument, so bare " inside needs no escape.
+
+syntax "JSONC" "\.jsonc$"
+comment "//"
+
+# Strings (values).
+color yellow "".*""
+
+# Escapes inside strings.
+color cyan "\\(["\/bfnrt]|u[[:xdigit:]]{4})"
+
+# Numbers and literals.
+color magenta ":[[:blank:]]*\-?(0|[1-9][0-9]*)(\.[0-9]+)?([Ee]?[-+]?[0-9]+)?"
+color brightmagenta "\<(true|false|null)\>"
+
+# Keys: a string followed by a colon. After the string rule, so it wins.
+color brightblue ""[^"]+"[[:blank:]]*:"
+
+# Structure, after keys so the key's own colon is repainted.
+color green "[][{},:]"
+
+# Comments last, overriding everything above.
+color brightblack "(^|[[:blank:]])//.*"
+color brightblack start="/\*" end="\*/"
+
+# Trailing whitespace.
+color ,red "[[:space:]]+$"

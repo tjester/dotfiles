@@ -1,0 +1,39 @@
+## rofi theme/config format (.rasi). CSS-like, but with @variables,
+## @import/@theme directives and a `configuration {}` block. Nothing in
+## either installed syntax set matches "\.rasi$".
+
+syntax "RASI" "\.rasi$"
+comment "//"
+
+# Property names (the part before a colon).
+color brightblue "[A-Za-z][A-Za-z0-9-]*[[:blank:]]*:"
+
+# Selectors / element names at the start of a block.
+color brightgreen "^[[:blank:]]*[*#A-Za-z][A-Za-z0-9_,.*# -]*\{"
+
+# @variable references, then directives after them so @import/@theme win
+# rather than being repainted as plain variables.
+color brightcyan "@[A-Za-z][A-Za-z0-9_-]*"
+color brightmagenta "@(import|theme|media)\>"
+
+# Hex colors — #rgb, #rrggbb, #rrggbbaa.
+color yellow "#[[:xdigit:]]{3,8}\>"
+
+# Numbers, with or without a unit.
+color magenta "\<[0-9]+(\.[0-9]+)?(px|em|ch|mm|%)?\>"
+
+# Keywords and inherit/none-style values.
+color brightmagenta "\<(true|false|inherit|none|bold|italic|underline|solid|dash|center|north|south|east|west|horizontal|vertical)\>"
+
+# Quoted strings, after the rules above so they aren't broken up.
+color yellow "".*""
+
+# Structure, after selectors so braces are repainted.
+color green "[{}();,]"
+
+# Comments last, overriding everything above.
+color brightblack "//.*"
+color brightblack start="/\*" end="\*/"
+
+# Trailing whitespace.
+color ,red "[[:space:]]+$"

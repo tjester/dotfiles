@@ -1,0 +1,68 @@
+#
+# nano config — lives at ~/.config/nano/nanorc (symlinked by install.sh).
+#
+# Note: nano reads whichever it finds first of ~/.nanorc, then
+# $XDG_CONFIG_HOME/nano/nanorc, then ~/.config/nano/nanorc. A stray ~/.nanorc
+# silently shadows this file, so install.sh moves one aside if it exists.
+#
+
+# ---- Syntax highlighting ----
+# Two sets are installed and they overlap on ~30 languages (c, css, json, sh,
+# python, yaml, ...). Where both define a syntax the LAST include wins, so the
+# nano-syntax-highlighting versions are the ones in effect — verified by
+# checking which yaml.nanorc's key colour actually renders. That set is also
+# what adds fish, toml, ini, systemd, git and ~100 others.
+include /usr/share/nano/*.nanorc
+include /usr/share/nano/extra/*.nanorc
+include /usr/share/nano-syntax-highlighting/*.nanorc
+
+# Formats neither set covers, defined in this repo. Included last.
+include ~/.config/nano/syntax/*.nanorc
+
+# ---- Display ----
+set linenumbers             # gutter with line numbers
+set numbercolor cyan,normal
+set indicator               # scrollbar-ish position indicator in the margin
+set constantshow            # always show line/col in the status bar
+set minibar                 # filename+position in the bottom bar, frees a line
+set nohelp                  # drop the two-line shortcut footer (^G still works)
+set titlecolor brightwhite,blue
+set statuscolor brightwhite,blue
+set errorcolor brightwhite,red
+set selectedcolor brightwhite,magenta
+set stripecolor ,black
+set scrollercolor cyan
+set promptcolor brightwhite,blue
+set keycolor brightcyan
+set functioncolor cyan
+
+# ---- Editing ----
+set softwrap                # wrap long lines visually...
+set atblanks                # ...at word boundaries, not mid-word
+set tabsize 4
+set tabstospaces            # makefile.nanorc overrides this with `tabgives`,
+                            # so real tabs are still used where they matter
+set autoindent
+set trimblanks              # strip trailing whitespace on wrapped lines
+set smarthome               # Home toggles first-non-blank / column 0
+set matchbrackets "(<[{)>]}"
+set zap                     # Del/Backspace remove a whole marked region
+set mouse
+
+# ---- Session ----
+set historylog              # remember search/replace history
+set positionlog             # reopen files at the last cursor position
+set multibuffer             # ^R reads into a new buffer
+
+# Highlight trailing whitespace in every filetype.
+extendsyntax default color ,red "[[:space:]]+$"
+
+# Upstream's yaml syntax paints keys red, which clashes with the blue keys used
+# by json/jsonc. Repaint them with the same regex it uses; appended rules are
+# applied last, so this wins.
+extendsyntax yaml color brightblue "(^|\s+).*+\s*:(\s|$)"
+
+# Upstream also paints comments blue, which now collides with the keys above.
+# Grey them, matching jsonc/rasi. Must come after the key rule, since a comment
+# containing a colon would otherwise be repainted as a key.
+extendsyntax yaml color brightblack "(^|[[:blank:]])#.*"
