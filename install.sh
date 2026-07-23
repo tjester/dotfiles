@@ -32,3 +32,13 @@ else
 fi
 ln -sf "$REPO_DIR/waybar/hosts/$WAYBAR_HOST.jsonc" "$REPO_DIR/waybar/host.jsonc"
 echo "Linked waybar/host.jsonc -> hosts/$WAYBAR_HOST.jsonc"
+
+# $browser/$BROWSER is set to "zen", but the AUR package (zen-browser-bin)
+# only provides a "zen-browser" binary on PATH. Give it the shorter name via
+# ~/.local/bin, which is already first on both fish's and the systemd user
+# session's PATH (so Hyprland's own `exec` keybinds pick it up too).
+if command -v zen-browser >/dev/null 2>&1; then
+    mkdir -p "$HOME/.local/bin"
+    ln -sf "$(command -v zen-browser)" "$HOME/.local/bin/zen"
+    echo "Linked ~/.local/bin/zen -> $(command -v zen-browser)"
+fi
