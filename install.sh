@@ -30,7 +30,7 @@ if compgen -G "/sys/class/power_supply/BAT*" > /dev/null; then
 else
     WAYBAR_HOST="desktop"
 fi
-ln -sf "$REPO_DIR/waybar/hosts/$WAYBAR_HOST.jsonc" "$REPO_DIR/waybar/host.jsonc"
+ln -sf "hosts/$WAYBAR_HOST.jsonc" "$REPO_DIR/waybar/host.jsonc"
 echo "Linked waybar/host.jsonc -> hosts/$WAYBAR_HOST.jsonc"
 
 # $browser/$BROWSER is set to "zen", but the AUR package (zen-browser-bin)

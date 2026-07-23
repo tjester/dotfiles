@@ -37,11 +37,17 @@ if [ ! -d "$THEME_DIR" ]; then
 fi
 
 # ---- App color files ----
-ln -sf "$THEME_DIR/colors.css" "$DOTFILES/waybar/theme.css"
-ln -sf "$THEME_DIR/colors.css" "$DOTFILES/swaync/theme.css"
-ln -sf "$THEME_DIR/kitty.conf" "$DOTFILES/kitty/theme.conf"
-ln -sf "$THEME_DIR/hyprland-colors.conf" "$DOTFILES/hypr/theme.conf"
-ln -sf "$THEME_DIR/rofi-colors.rasi" "$DOTFILES/rofi/theme-colors.rasi"
+# Linked relatively, not as absolute paths: every link below lives one level
+# deep in the repo, so ../theme/... stays valid no matter where the repo is
+# checked out or whether it's reached via ~/.config's symlinks. Absolute
+# targets routed back out through ~/.config/theme and broke on a repo move.
+REL="../theme/themes/$THEME"
+
+ln -sf "$REL/colors.css" "$DOTFILES/waybar/theme.css"
+ln -sf "$REL/colors.css" "$DOTFILES/swaync/theme.css"
+ln -sf "$REL/kitty.conf" "$DOTFILES/kitty/theme.conf"
+ln -sf "$REL/hyprland-colors.conf" "$DOTFILES/hypr/theme.conf"
+ln -sf "$REL/rofi-colors.rasi" "$DOTFILES/rofi/theme-colors.rasi"
 
 # ---- GTK theme / icons / color-scheme ----
 if [ -f "$THEME_DIR/gtk.conf" ]; then
@@ -53,9 +59,20 @@ if [ -f "$THEME_DIR/gtk.conf" ]; then
 fi
 
 # ---- Wallpaper, with a swipe transition (all connected monitors) ----
-if [ -f "$THEME_DIR/wallpaper" ]; then
-    WALLPAPER="$(cat "$THEME_DIR/wallpaper")"
-    if [ -f "$WALLPAPER" ] && command -v awww >/dev/null 2>&1; then
+# The image lives in the theme dir as wallpaper.<ext> and travels with the
+# repo. It used to be a `wallpaper` text file holding an absolute path to
+# somewhere under $HOME, which made each theme machine-specific.
+shopt -s nullglob
+WALLPAPERS=("$THEME_DIR"/wallpaper.*)
+shopt -u nullglob
+WALLPAPER="${WALLPAPERS[0]:-}"
+
+if [ -n "$WALLPAPER" ]; then
+    # hyprlock reads this link. It detects the image format from content
+    # (hyprgraphics uses libmagic), so the link needs no extension of its own.
+    ln -sf "$REL/$(basename "$WALLPAPER")" "$DOTFILES/hypr/lock-wallpaper"
+
+    if command -v awww >/dev/null 2>&1; then
         awww query >/dev/null 2>&1 || { setsid awww-daemon >/tmp/awww.log 2>&1 & disown; sleep 0.5; }
         awww img "$WALLPAPER" \
             --transition-type wipe \
