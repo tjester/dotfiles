@@ -1,0 +1,18 @@
+/* Freycinet (dark) — palette sampled from the dusk-seascape photo in
+ * wallpaper.jpg (silhouetted headland, steel-blue sky, gold sunset over
+ * the water, a jetty reaching into the bay).
+ * green/pink/teal are barely present in the source, so those are
+ * synthesized to stay harmonious with the cool, dusky, gold-lit palette. */
+@define-color bg #131c26;
+@define-color bg-alt #263543;
+@define-color fg #e6ecf1;
+@define-color subtext #a9bac7;
+@define-color overlay #6b7988;
+@define-color accent #e7b174;
+@define-color accent2 #f2d29e;
+@define-color red #d16150;
+@define-color green #86a07c;
+@define-color yellow #edc776;
+@define-color blue #7ba0c4;
+@define-color pink #e39a83;
+@define-color teal #6fa3a5;

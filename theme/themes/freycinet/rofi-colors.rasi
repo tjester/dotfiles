@@ -1,0 +1,7 @@
+/* Freycinet (dark) */
+* {
+    bg: #131c26ee;
+    bg-alt: #263543;
+    fg: #e6ecf1;
+    accent: #e7b174;
+}

@@ -94,6 +94,7 @@ window#waybar {
 
 #custom-power {
     color: @accent;
+    margin-right: 12px;
 }
 
 #custom-power:hover {
