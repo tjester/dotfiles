@@ -6,6 +6,12 @@ every file here is plain and meant to be read and edited directly.
 ## Layout
 
 - `hypr/` — Hyprland compositor config, monitor layout, hypridle/hyprlock/hyprpaper
+
+Hyprland's own config is Lua (`hypr/hyprland.lua`): hyprlang `.conf` is
+deprecated since 0.55 and removed in 0.57. The `.conf` files are kept for now as
+a rollback — Hyprland prefers `hyprland.lua` whenever both exist, and only checks
+at startup. `hypridle`/`hyprlock` are separate projects and still use hyprlang,
+so `hypridle.conf` and `hyprlock.conf` stay as they are.
 - `waybar/` — status bar (right-click the volume icon to pick an audio output device)
 - `rofi/` — app launcher (`$mainMod + Space`)
 - `swaync/` — notification daemon/center (`$mainMod + N`)
@@ -39,8 +45,10 @@ for whatever version was installed when they were last touched. If a setting
 silently stops working after a system update, don't assume the config is
 still valid syntax — check first:
 
-- `Hyprland --config hypr/hyprland.conf --verify-config` dry-runs the main
-  config without launching a compositor.
+- `Hyprland --config ~/.config/hypr/hyprland.lua --verify-config` dry-runs the
+  main config without launching a compositor. It really does execute the Lua and
+  validate every key and dispatcher, so "config ok" is meaningful. Pass an
+  absolute path — `require` resolves against `~/.config/hypr`, not the cwd.
 - For everything else, run the daemon in the foreground with verbose logging
   (e.g. `hyprpaper --verbose`) and watch for parse errors or "invalid config
   key" warnings — a daemon that starts cleanly but does nothing is usually
@@ -57,10 +65,13 @@ still valid syntax — check first:
 
 Press `SUPER + /` any time for an on-screen cheat sheet (rofi popup, powered by
 `hypr/scripts/show-keybinds.sh`). It reads live from `hyprctl binds`, so it's
-always accurate — every bind that should show up there is defined with `bindd`
-(or `bindmd`/`bindeld`/`bindld`) instead of plain `bind` in `hypr/hyprland.conf`,
-which attaches a description. Add a description to a new bind the same way to
-have it show up automatically.
+always accurate — every bind that should show up there passes a `description` in
+its options table in `hypr/hyprland.lua`. Add one to a new bind the same way to
+have it show up automatically:
+
+```lua
+hl.bind("SUPER + X", hl.dsp.exec_cmd("something"), { description = "Do the thing" })
+```
 
 | Binding | Action |
 |---|---|

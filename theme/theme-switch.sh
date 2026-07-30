@@ -46,7 +46,7 @@ REL="../theme/themes/$THEME"
 ln -sf "$REL/colors.css" "$DOTFILES/waybar/theme.css"
 ln -sf "$REL/colors.css" "$DOTFILES/swaync/theme.css"
 ln -sf "$REL/kitty.conf" "$DOTFILES/kitty/theme.conf"
-ln -sf "$REL/hyprland-colors.conf" "$DOTFILES/hypr/theme.conf"
+ln -sf "$REL/hyprland-colors.lua" "$DOTFILES/hypr/theme.lua"
 ln -sf "$REL/rofi-colors.rasi" "$DOTFILES/rofi/theme-colors.rasi"
 
 # ---- GTK theme / icons / color-scheme ----

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Cheat sheet: shows every keybind that has a description (bindd/bindmd/...)
-# in hyprland.conf. Reads live from `hyprctl binds`, so it's always in sync
+# Cheat sheet: shows every keybind given a `description` in its hl.bind options
+# in hyprland.lua. Reads live from `hyprctl binds`, so it's always in sync
 # with whatever is actually bound, not a separate hand-maintained list.
 #
 # Parses the plain-text `hyprctl binds` output rather than `-j`: on
