@@ -203,7 +203,9 @@ local browser  = "zen"
 hl.bind(mainMod .. " + Return",  hl.dsp.exec_cmd(terminal),          { description = "Open terminal" })
 hl.bind(mainMod .. " + B",       hl.dsp.exec_cmd(browser),           { description = "Launch browser" })
 hl.bind(mainMod .. " + Q",       hl.dsp.window.close(),              { description = "Close window" })
-hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exit(),                    { description = "Exit Hyprland" })
+-- Not hl.dsp.exit(): uwsm needs to tear the session down itself, see logout.sh.
+hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd(configDir .. "/scripts/logout.sh"),
+                                                                     { description = "Exit Hyprland" })
 hl.bind(mainMod .. " + Space",   hl.dsp.exec_cmd(launcher),          { description = "App launcher" })
 hl.bind(mainMod .. " + V",       hl.dsp.window.float(),              { description = "Toggle floating" })
 hl.bind(mainMod .. " + F",       hl.dsp.window.fullscreen(),         { description = "Toggle fullscreen" })

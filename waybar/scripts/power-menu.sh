@@ -8,7 +8,7 @@ chosen="$(printf '%b' "$options" | rofi -dmenu -p "Power" -i)"
 
 case "$chosen" in
     *Lock) hyprlock ;;
-    *Logout) hyprctl dispatch exit ;;
+    *Logout) ~/.config/hypr/scripts/logout.sh ;;
     *Suspend) systemctl suspend ;;
     *Reboot) systemctl reboot ;;
     *Shutdown) systemctl poweroff ;;
