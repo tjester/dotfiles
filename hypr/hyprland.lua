@@ -271,3 +271,14 @@ hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t -sw"), { descriptio
 -- Theme switcher
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd((os.getenv("XDG_CONFIG_HOME") or (os.getenv("HOME") .. "/.config")) .. "/theme/theme-switch.sh"),
                                                                     { description = "Theme switcher" })
+
+-- Zwift (Wine) sometimes maps at coordinates outside every monitor and ends up
+-- invisible; pin it to the HDMI display and centre it on open.
+hl.window_rule({
+    name  = "zwift-onscreen",
+    match = { class = "^zwiftapp\\.exe$" },
+
+    float   = true,
+    monitor = "HDMI-A-1",
+    center  = true,
+})
