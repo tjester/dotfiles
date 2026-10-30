@@ -198,7 +198,7 @@ hl.animation({ leaf = "workspaces", enabled = true, speed = 4, bezier = "easeInO
 local mainMod  = "SUPER"
 local terminal = "kitty"
 local launcher = "rofi -show drun"
-local browser  = "zen"
+local browser  = "firefox"
 
 hl.bind(mainMod .. " + Return",  hl.dsp.exec_cmd(terminal),          { description = "Open terminal" })
 hl.bind(mainMod .. " + B",       hl.dsp.exec_cmd(browser),           { description = "Launch browser" })
